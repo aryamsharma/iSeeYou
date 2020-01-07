@@ -60,58 +60,24 @@ def average_pixel_color(frame):
 def remove_dupe(head):
     return list(set(head))
 
-def write(all_names=[], known_names=None, to_input="H", img=None):
-    """
-    def end_write_to_file(known_names=None):
+def write(all_names, img):
+    r = open("attendance.txt", "r+")
+    
     lines = r.readlines()
     already_in = []
-    
+
     for line in lines:
         if not line.startswith("\n#"):
             already_in.append(line.strip().split(":")[0])
             continue
         break
 
-    set_known_names = set(known_names)
-    r.write("\n##########\nNot here\n")
-
-    for name in list(set_known_names.symmetric_difference(already_in)):
-        r.write(name + "\n")
-    """
-
-    r = open("attendance.txt", "r+")
-    
-    if to_input.upper() == "H":
-        lines = r.readlines()
-        already_in = []
-
-        for line in lines:
-            if not line.startswith("\n#"):
-                already_in.append(line.strip().split(":")[0])
-                continue
-            break
-
-        for name in all_names:
-            if already_in.count(name) <= 0:
-                r.write(f"{name}:{time.ctime()}\n")
-                already_in.append(name)
-                already_in = remove_dupe(already_in)
-                cv2.imwrite(f"../../snapshots/{name}:{str(time.ctime())}.jpg", img)
-    
-    elif to_input.upper() == "N":
-        lines = r.readlines()
-        already_in = []
-        for line in lines:
-            if not line.startswith("\n#"):
-                already_in.append(line.strip().split(":")[0])
-                continue
-            break
-
-        set_known_names = set(known_names)
-        r.write("\n##########\nNot here\n")
-
-        for name in list(set_known_names.symmetric_difference(already_in)):
-            r.write(name + "\n")
+    for name in all_names:
+        if already_in.count(name) <= 0:
+            r.write(f"{name}:{time.ctime()}\n")
+            already_in.append(name)
+            already_in = remove_dupe(already_in)
+            cv2.imwrite(f"../../snapshots/{name}:{str(time.ctime())}.jpg", img)
 
 def avg_names(all_names, scan_time=5):
     everyname = []
@@ -126,6 +92,22 @@ def avg_names(all_names, scan_time=5):
             main_names.append(name)    
     return main_names
 
+def write_not_here(known_names):
+    r = open("attendance.txt", "r+")
+    lines = r.readlines()
+    already_in = []
+    for line in lines:
+        if not line.startswith("\n#"):
+            already_in.append(line.strip().split(":")[0])
+            continue
+        break
+
+    set_known_names = set(known_names)
+    r.write("\n##########\nNot here\n")
+
+    for name in list(set_known_names.symmetric_difference(already_in)):
+        r.write(name + "\n")
+
 def start(cap, file_no, delay):
     os.chdir(f"data/ready/period{file_no}")
     known_encoded, known_names = load_encodings()
@@ -136,7 +118,7 @@ def start(cap, file_no, delay):
     ret, last_frame = cap.read()
     last_frame_gray = cv2.cvtColor(last_frame, cv2.COLOR_RGB2GRAY)
     
-    print("Ready")
+    print(f"Starting for Period {file_no}")
     while True:
         ret, frame = cap.read()
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -150,18 +132,19 @@ def start(cap, file_no, delay):
                 ret, frame = cap.read()
                 all_names.append(proccess_data(known_encoded, known_names, frame))
             names = avg_names(all_names, scan_time)
-            write(names, img=frame, to_input="H")
+            write(names, frame)
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         last_frame_gray = frame_gray
         
         if time.time() - start > delay:
-            write(known_names=known_names, to_input="n")
+            write_not_here(known_names=known_names)
             break
+    
+    os.chdir("../../../")
 
 if __name__ == "__main__":
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
-
 
     s.enter(0, 1, start, argument=(cap, "1", 4920,))
     s.enter(4925, 1, start, argument=(cap, "2", 7975,))
