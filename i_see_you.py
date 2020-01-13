@@ -23,25 +23,18 @@ def setter(frame):
     return small
 
 def detection(known_encoded, face_encode, known_names):
-    result = face_recognition.compare_faces(known_encoded, face_encode)
     name = "Unknown"
-
     dif_vals = face_recognition.face_distance(known_encoded, face_encode)
-    best_match_index = np.argmin(dif_vals)
 
-    if result[best_match_index]:
+    if np.argmin(dif_vals) < 0.7:
         name = known_names[best_match_index]
+    
     return name
 
 def features(frame):
     face_locations = face_recognition.face_locations(frame)
     face_encodings = face_recognition.face_encodings(frame, face_locations, 0)
     return face_locations, face_encodings
-
-def render(frame, name, top, right, bottom, left):
-    cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
-    cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 255, 0), -1)
-    cv2.putText(frame, name, (left + 6, bottom - 6), cv2.FONT_HERSHEY_DUPLEX, 1.0, (0, 0, 0), 1)
 
 def proccess_data(known_encoded, known_names, frame):
     small_frame = setter(frame)
@@ -54,8 +47,7 @@ def proccess_data(known_encoded, known_names, frame):
     return names
 
 def average_pixel_color(frame):
-    avg_color_row = np.average(frame)
-    return np.average(avg_color_row)
+    return np.average(frame)
 
 def remove_dupe(head):
     return list(set(head))
@@ -128,12 +120,15 @@ def start(cap, file_no, delay):
 
         if average_intensity > rigidness_motion:
             all_names = []
+            
             for i in range(scan_time):
                 ret, frame = cap.read()
                 all_names.append(proccess_data(known_encoded, known_names, frame))
+
             names = avg_names(all_names, scan_time)
             write(names, frame)
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+
         last_frame_gray = frame_gray
         
         if time.time() - start > delay:
