@@ -5,12 +5,13 @@ import os
 def setter(name):
     while True:
         im = Image.open(name)
-
+        
         try:
             img = face_recognition.load_image_file(name)
             loc = face_recognition.face_locations(img, number_of_times_to_upsample=0, model="hog")[0]
             break
-        except IndexError:
+
+        except:
             im.rotate(90).save(name)
 
     return img, loc
@@ -27,7 +28,7 @@ def main(Class_no=1):
     """
     image_path = "data/tocrop"
     names = os.listdir(image_path)
-    names = [name for name in names if name.lower().endswith(("jpg", "png", "JPG", "PNG"))]
+    names = [name for name in names if name.lower().endswith(("jpg", "png"))]
     os.chdir(image_path)
 
     for name in names:
