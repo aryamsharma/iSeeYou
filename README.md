@@ -33,7 +33,7 @@ After installing all the necessary modules you can now run the script.
 * [Opencv](https://opencv.org)
 * [Face Recognition](https://github.com/ageitgey/face_recognition)
 
-## The visions
+## The Vision
 The program should be expandable so that new faces can easily be added. To simplify use, the program should be deployed on a server and let clients to connect to it for cloud computing and the clients can ask for reports at the end of the day or even mid-day.
 
 
