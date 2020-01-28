@@ -23,13 +23,24 @@ def setter(frame):
     return small
 
 def detection(known_encoded, face_encode, known_names):
+    result = face_recognition.compare_faces(known_encoded, face_encode)
     name = "Unknown"
-    dif_vals = face_recognition.face_distance(known_encoded, face_encode)
 
-    if np.argmin(dif_vals) < 0.7:
+    dif_vals = face_recognition.face_distance(known_encoded, face_encode)
+    
+    best_match_index = np.argmin(dif_vals)
+
+    if result[best_match_index] and dif_vals[best_match_index] < 0.7:
         name = known_names[best_match_index]
     
+    print(f"Name is {name}")
+    print(f"dif_vals total is {dif_vals}")
+    print(f"dif_vals is {dif_vals[best_match_index]}")
+    print(f"result is {result[best_match_index]}")
+    print(f"Name is {name}")
+
     return name
+
 
 def features(frame):
     face_locations = face_recognition.face_locations(frame)
