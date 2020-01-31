@@ -1,9 +1,12 @@
+import cropper
 import cv2
 import face_recognition
 import os
 import numpy as np
 import time
 import sched
+def clean_file(file_path):
+    open(file_path, "w").close()
 
 def load_encodings(include_filetypes=(".jpg", ".png")):
     encoded = []
@@ -80,7 +83,7 @@ def write(all_names, img):
             r.write(f"{name}:{time.ctime()}\n")
             already_in.append(name)
             already_in = remove_dupe(already_in)
-            cv2.imwrite(f"../../snapshots/{name}:{str(time.ctime())}.jpg", img)
+            cv2.imwrite(f"snapshots/{name}:{str(time.ctime())}.jpg", img)
 
 def avg_names(all_names, scan_time=5):
     everyname = []
@@ -112,8 +115,17 @@ def write_not_here(known_names):
         r.write(name + "\n")
 
 def start(cap, file_no, delay):
+    print(f"Starting for Period {file_no}")
+
     os.chdir(f"data/ready/period{file_no}")
+    clean_file("attendance.txt")
+
     known_encoded, known_names = load_encodings()
+    
+    if len(known_names) == 0:
+        print("Skipping period as no photos are detected")
+        return None
+
     rigidness_motion = 4
     scan_time = 20
     start = time.time()
@@ -121,7 +133,7 @@ def start(cap, file_no, delay):
     ret, last_frame = cap.read()
     last_frame_gray = cv2.cvtColor(last_frame, cv2.COLOR_RGB2GRAY)
     
-    print(f"Starting for Period {file_no}")
+    print("Camera now on")
     while True:
         ret, frame = cap.read()
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -145,7 +157,7 @@ def start(cap, file_no, delay):
         if time.time() - start > delay:
             write_not_here(known_names=known_names)
             break
-    
+
     os.chdir("../../../")
 
 if __name__ == "__main__":

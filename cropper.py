@@ -21,7 +21,7 @@ def getcropped(img, loc):
     cropped = img[top:bottom, left:right]
     return Image.fromarray(cropped)
 
-def main(Class_no=1):
+def main(Class_no):
     """
     Class_no is just asking what period number student is in,
     You may ignore it if there are no new extra students being added
