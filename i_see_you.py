@@ -5,6 +5,7 @@ import os
 import numpy as np
 import time
 import sched
+
 def clean_file(file_path):
     open(file_path, "w").close()
 
@@ -123,7 +124,7 @@ def start(cap, file_no, delay):
     known_encoded, known_names = load_encodings()
     
     if len(known_names) == 0:
-        print("Skipping period as no photos are detected")
+        print("Skipping period as no photos are in file")
         return None
 
     rigidness_motion = 4
@@ -164,9 +165,19 @@ if __name__ == "__main__":
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
 
-    s.enter(0, 1, start, argument=(cap, "1", 4920,))
-    s.enter(4925, 1, start, argument=(cap, "2", 7975,))
-    s.enter(7980, 1, start, argument=(cap, "3", 4495,))
-    s.enter(4500, 1, start, argument=(cap, "4", 3600,))
+    if int(time.localtime()[2]) % 2 == 1:
+        s.enter(0, 1, start, argument=(cap, "1", 4920,))
+        s.enter(4925, 1, start, argument=(cap, "2", 7975,))
+        s.enter(7980, 1, start, argument=(cap, "3", 4495,))
+        s.enter(4500, 1, start, argument=(cap, "4", 3600,))
 
-    s.run()
+        s.run()
+    
+    else:
+        s.enter(0, 1, start, argument=(cap, "2", 4920,))
+        s.enter(4925, 1, start, argument=(cap, "1", 7975,))
+        s.enter(7980, 1, start, argument=(cap, "4", 4495,))
+        s.enter(4500, 1, start, argument=(cap, "3", 3600,))
+
+        s.run()
+    
