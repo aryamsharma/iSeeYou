@@ -6,8 +6,14 @@ import numpy as np
 import time
 import sched
 
-def clean_file(file_path):
-    open(file_path, "w").close()
+def cleanup():
+    open("attendance.txt", "w").close()
+
+    contents = os.listdir("snapshots")
+
+    for i in contents:
+        if not i.startswith("."):
+            os.unlink("snapshots/" + i)
 
 def load_encodings(include_filetypes=(".jpg", ".png")):
     encoded = []
@@ -36,12 +42,6 @@ def detection(known_encoded, face_encode, known_names):
 
     if result[best_match_index] and dif_vals[best_match_index] < 0.7:
         name = known_names[best_match_index]
-    
-    print(f"Name is {name}")
-    print(f"dif_vals total is {dif_vals}")
-    print(f"dif_vals is {dif_vals[best_match_index]}")
-    print(f"result is {result[best_match_index]}")
-    print(f"Name is {name}")
 
     return name
 
@@ -81,18 +81,16 @@ def write(all_names, img):
 
     for name in all_names:
         if already_in.count(name) <= 0:
-            r.write(f"{name}:{time.ctime()}\n")
+            current_time = str(time.ctime())
+            r.write(f"{name}:{current_time}\n")
             already_in.append(name)
             already_in = remove_dupe(already_in)
-            cv2.imwrite(f"snapshots/{name}:{str(time.ctime())}.jpg", img)
+            cv2.imwrite(f"snapshots/{name}:{current_time}.jpg", img)
+            print(f"Recorded {name} at {current_time}")
 
 def avg_names(all_names, scan_time=5):
-    everyname = []
+    everyname = [val for sublist in all_names for val in sublist]
     main_names = []
-
-    for names in all_names:
-        for name in names:
-            everyname.append(name)
 
     for name in set(everyname):
         if everyname.count(name) > int(scan_time / 2):
@@ -119,7 +117,7 @@ def start(cap, file_no, delay):
     print(f"Starting for Period {file_no}")
 
     os.chdir(f"data/ready/period{file_no}")
-    clean_file("attendance.txt")
+    cleanup()
 
     known_encoded, known_names = load_encodings()
     
