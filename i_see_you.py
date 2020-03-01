@@ -1,11 +1,12 @@
-import cropper
+import os
+import sched
+import time
+
 import cv2
 import face_recognition
-import os
 import numpy as np
-import time
-import sched
 
+print(f"Time taken to import all libraries: {time.perf_counter()}")
 def cleanup():
     open("attendance.txt", "w").close()
 
@@ -37,12 +38,15 @@ def detection(known_encoded, face_encode, known_names):
     name = "Unknown"
 
     dif_vals = face_recognition.face_distance(known_encoded, face_encode)
-    
+
     best_match_index = np.argmin(dif_vals)
+    dif_val = dif_vals[best_match_index]
 
-    if result[best_match_index] and dif_vals[best_match_index] < 0.7:
+    if result[best_match_index] and dif_val < 0.7:
         name = known_names[best_match_index]
-
+    
+    print(f"Name      : {name}")
+    print(f"Confidence: {1 - dif_val}")
     return name
 
 
@@ -118,21 +122,27 @@ def start(cap, file_no, delay):
 
     os.chdir(f"data/ready/period{file_no}")
     cleanup()
+    print("Cleanup finished")
 
     known_encoded, known_names = load_encodings()
+    print("Encodings loaded")
     
     if len(known_names) == 0:
         print("Skipping period as no photos are in file")
-        return None
+        cap.release()
+        return
 
-    rigidness_motion = 4
+    rigidness_motion = 3.2
     scan_time = 20
     start = time.time()
 
+    print(f"Tolerance level ------------------------> {rigidness_motion}")
+    print(f"Frames taken when motion is detected ---> {scan_time}")
+
     ret, last_frame = cap.read()
-    last_frame_gray = cv2.cvtColor(last_frame, cv2.COLOR_RGB2GRAY)
-    
+    last_frame_gray = cv2.cvtColor(last_frame, cv2.COLOR_RGB2GRAY)    
     print("Camera now on")
+    
     while True:
         ret, frame = cap.read()
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -159,7 +169,8 @@ def start(cap, file_no, delay):
 
     os.chdir("../../../")
 
-if __name__ == "__main__":
+def main():
+    
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
 
@@ -168,14 +179,11 @@ if __name__ == "__main__":
         s.enter(4925, 1, start, argument=(cap, "2", 7975,))
         s.enter(7980, 1, start, argument=(cap, "3", 4495,))
         s.enter(4500, 1, start, argument=(cap, "4", 3600,))
-
-        s.run()
     
     else:
         s.enter(0, 1, start, argument=(cap, "2", 4920,))
         s.enter(4925, 1, start, argument=(cap, "1", 7975,))
         s.enter(7980, 1, start, argument=(cap, "4", 4495,))
         s.enter(4500, 1, start, argument=(cap, "3", 3600,))
-
-        s.run()
     
+    s.run()

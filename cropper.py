@@ -40,7 +40,3 @@ def main(Class_no):
         os.chdir("../../tocrop")
         os.remove(name)
     os.chdir("../..")
-
-
-if __name__ == "__main__":
-    main(int(input("Class_no: ")))
