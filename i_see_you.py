@@ -1,12 +1,16 @@
 import os
 import sched
+import threading
 import time
 
 import cv2
 import face_recognition
 import numpy as np
 
+import repl_sys
+
 print(f"Time taken to import all libraries: {time.perf_counter()}")
+
 def cleanup():
     open("attendance.txt", "w").close()
 
@@ -30,8 +34,7 @@ def load_encodings(include_filetypes=(".jpg", ".png")):
     return encoded, names
 
 def setter(frame):
-    small = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)[:, :, ::-1]
-    return small
+    return cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)[:, :, ::-1]
 
 def detection(known_encoded, face_encode, known_names):
     result = face_recognition.compare_faces(known_encoded, face_encode)
@@ -48,7 +51,6 @@ def detection(known_encoded, face_encode, known_names):
     print(f"Name      : {name}")
     print(f"Confidence: {1 - dif_val}")
     return name
-
 
 def features(frame):
     face_locations = face_recognition.face_locations(frame)
@@ -167,16 +169,43 @@ def start(cap, file_no, delay):
             write_not_here(known_names=known_names)
             break
 
+    print(os.getcwd())
     os.chdir("../../../")
+    print(os.getcwd())
+    print(f"Done with Period {file_no}")
+
+def REPL():
+    interperter = repl_sys.Reader(">> ")
+    #TODO Deal with this
 
 def main():
-    
     s = sched.scheduler(time.time, time.sleep)
+    #TODO Deal with this \/
+    Thread = threading.Thread(target=REPL, daemon=True)
+
     cap = cv2.VideoCapture(0)
 
     if int(time.localtime()[2]) % 2 == 1:
         s.enter(0, 1, start, argument=(cap, "1", 4920,))
         s.enter(4925, 1, start, argument=(cap, "2", 7975,))
+        s.enter(7980, 1, start, argument=(cap, "3", 4495,))
+        s.enter(4500, 1, start, argument=(cap, "4", 3600,))
+    
+    else:
+        s.enter(0, 1, start, argument=(cap, "2", 4920,))
+        s.enter(4925, 1, start, argument=(cap, "1", 7975,))
+        s.enter(7980, 1, start, argument=(cap, "4", 4495,))
+        s.enter(4500, 1, start, argument=(cap, "3", 3600,))
+    
+    s.run()
+
+if __name__ == "__main__":
+    s = sched.scheduler(time.time, time.sleep)
+    cap = cv2.VideoCapture(0)
+
+    if int(time.localtime()[2]) % 2 == 1:
+        s.enter(0, 1, start, argument=(cap, "1", 5,))
+        s.enter(10, 1, start, argument=(cap, "2", 7975,))
         s.enter(7980, 1, start, argument=(cap, "3", 4495,))
         s.enter(4500, 1, start, argument=(cap, "4", 3600,))
     

@@ -6,7 +6,7 @@ This is an attendance automation system using ***opencv*** and the ***facial rec
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Perquisites
 
 - [__pip3__](https://pip.pypa.io/en/stable/)
 - [__Python >= 3.7.4__](https://www.python.org)
@@ -32,7 +32,7 @@ After installing all the necessary modules you can now run the script.
 
 * [Opencv](https://opencv.org)
 * [Face Recognition](https://github.com/ageitgey/face_recognition)
-
+* [Schedule](https://github.com/)
 ## The Vision
 The program should be expandable so that new faces can easily be added. To simplify use, the program should be deployed on a server and let clients to connect to it for cloud computing and the clients can ask for reports at the end of the day or even mid-day.
 

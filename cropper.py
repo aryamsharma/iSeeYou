@@ -28,7 +28,7 @@ def main(Class_no):
     """
     image_path = "data/tocrop"
     names = os.listdir(image_path)
-    names = [name for name in names if name.lower().endswith(("jpg", "png"))]
+    names = [name for name in names if name.lower().endswith((".jpg", ".png"))]
     os.chdir(image_path)
 
     for name in names:
