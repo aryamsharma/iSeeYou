@@ -26,7 +26,7 @@ def main(Class_no):
     Class_no is just asking what period number student is in,
     You may ignore it if there are no new extra students being added
     """
-    image_path = "data/tocrop"
+    image_path = "../to_crop"
     names = os.listdir(image_path)
     names = [name for name in names if name.lower().endswith((".jpg", ".png"))]
     os.chdir(image_path)
@@ -35,8 +35,9 @@ def main(Class_no):
         img, loc = setter(name)
         image = getcropped(img, loc)
 
-        os.chdir(f"../ready/period{Class_no}")
+        os.chdir(f"../periods/period{Class_no}")
         image.save(name.split(".")[0] + ".jpg")
-        os.chdir("../../tocrop")
+        os.chdir("../../to_crop")
         os.remove(name)
-    os.chdir("../..")
+
+    os.chdir("../eye")

@@ -122,7 +122,7 @@ def write_not_here(known_names):
 def start(cap, file_no, delay):
     print(f"Starting for Period {file_no}")
 
-    os.chdir(f"data/ready/period{file_no}")
+    os.chdir(f"../periods/period{file_no}")
     cleanup()
     print("Cleanup finished")
 
@@ -170,7 +170,7 @@ def start(cap, file_no, delay):
             break
 
     print(os.getcwd())
-    os.chdir("../../../")
+    os.chdir("../../eye")
     print(os.getcwd())
     print(f"Done with Period {file_no}")
 
@@ -181,7 +181,7 @@ def REPL():
 def main():
     s = sched.scheduler(time.time, time.sleep)
     #TODO Deal with this \/
-    Thread = threading.Thread(target=REPL, daemon=True)
+    # Thread = threading.Thread(target=REPL, daemon=True)
 
     cap = cv2.VideoCapture(0)
 

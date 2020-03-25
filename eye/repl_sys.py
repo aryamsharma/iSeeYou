@@ -48,7 +48,7 @@ class Reader:
             print("No such period no")
             return 
         
-        with open(f"data/ready/period{period_no}/attendance.txt") as f:
+        with open(f"../periods/period{period_no}/attendance.txt") as f:
             highest = -1
             for line in f:
                 info = line.strip().split(":", 1)
