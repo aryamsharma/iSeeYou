@@ -89,7 +89,7 @@ def accuracy(command):
     return None
 
 def main():
-    sleep(5)
+    sleep(3)
     PS = ">> "
 
     while True:

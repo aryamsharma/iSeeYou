@@ -26,7 +26,7 @@ def load_encodings(file_no, include_filetypes=(".jpg", ".png")):
     names = [name for name in names if name.lower().endswith(include_filetypes)]
 
     for name in names:
-        image = face_recognition.load_image_file(name)
+        image = face_recognition.load_image_file(f"../periods/period_{file_no}/{name}")
         loc = face_recognition.face_locations(image, 0)
         encoded.append(face_recognition.face_encodings(image, loc, 1)[0])
     
@@ -92,7 +92,7 @@ def write(all_names, img, file_no):
             already_in.append(name)
             already_in = remove_dupe(already_in)
             cv2.imwrite(f"../periods/period_{file_no}/snapshots/{name}:{current_time}.jpg", img)
-            # print(f"Recorded {name} at {current_time}")
+            print(f"Recorded {name} at {current_time}")
 
 def avg_names(all_names, scan_time=5):
     everyname = [val for sublist in all_names for val in sublist]
@@ -186,7 +186,7 @@ def main():
         s.enter(4500, 1, start, argument=(cap, "4", 3600,))
     
     else:
-        s.enter(0, 1, start, argument=(cap, "2", 4920,))
+        s.enter(0, 1, start, argument=(cap, "1", 4920,))
         s.enter(4925, 1, start, argument=(cap, "1", 7975,))
         s.enter(7980, 1, start, argument=(cap, "4", 4495,))
         s.enter(4500, 1, start, argument=(cap, "3", 3600,))
