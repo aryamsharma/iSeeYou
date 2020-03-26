@@ -1,0 +1,5 @@
+
+list period <val>
+set prompt <val>
+clear
+

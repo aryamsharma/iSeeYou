@@ -10,10 +10,8 @@ def setter(name):
             img = face_recognition.load_image_file(name)
             loc = face_recognition.face_locations(img, number_of_times_to_upsample=0, model="hog")[0]
             break
-
         except:
             im.rotate(90).save(name)
-
     return img, loc
 
 def getcropped(img, loc):
@@ -35,7 +33,7 @@ def main(Class_no):
         img, loc = setter(name)
         image = getcropped(img, loc)
 
-        os.chdir(f"../periods/period{Class_no}")
+        os.chdir(f"../periods/period_{Class_no}")
         image.save(name.split(".")[0] + ".jpg")
         os.chdir("../../to_crop")
         os.remove(name)

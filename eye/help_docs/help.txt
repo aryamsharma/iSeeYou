@@ -1,0 +1,33 @@
+
+The template for each command is as follows
+<definer> <sub-class> <option>
+
+Definer call:
+    The definer parameter defines what action is to be done. For example
+
+    list ... (Will list whatever is is in the following options) {list period 1}
+    set ...  (Will set the sub-class object as the option)       {set prompt <><>}
+
+Sub-Class:
+    The sub-class parameter explains what command is to be run. For example
+
+    list period ... (list period table)
+    set prompt ...  (set prompt)
+
+Option:
+    The option parameter allows arguments to be passed to the sub-class option. For example
+
+    >> set prompt <><><> 
+    ... (Changes prompt)
+
+    <><><> set prompt <._.>
+    ... (Changes prompt)
+
+    <._.> list period 1
+    ... (Prints out table)
+
+
+Try typing out "help <definer>" to understand what that definer does.
+
+If you do not know know any definers type in "help commands"
+

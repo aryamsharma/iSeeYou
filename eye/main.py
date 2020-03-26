@@ -13,7 +13,6 @@ def job():
             cropper.main(int(input("Class_no: ")))
         
     Animation.to_animate(text=Animation.standard_text)
-
     print("Running main Script")
     i_see_you.main()
 

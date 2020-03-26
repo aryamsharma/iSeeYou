@@ -7,22 +7,22 @@ import cv2
 import face_recognition
 import numpy as np
 
-import repl_sys
+import repl
 
 print(f"Time taken to import all libraries: {time.perf_counter()}")
 
-def cleanup():
-    open("attendance.txt", "w").close()
+def cleanup(file_no):
+    open(f"../periods/period_{file_no}/attendance.txt", "w").close()
 
-    contents = os.listdir("snapshots")
+    contents = os.listdir(f"../periods/period_{file_no}/snapshots")
 
     for i in contents:
         if not i.startswith("."):
-            os.unlink("snapshots/" + i)
+            os.unlink(f"../periods/period_{file_no}/snapshots/" + i)
 
-def load_encodings(include_filetypes=(".jpg", ".png")):
+def load_encodings(file_no, include_filetypes=(".jpg", ".png")):
     encoded = []
-    names = os.listdir()
+    names = os.listdir(f"../periods/period_{file_no}")
     names = [name for name in names if name.lower().endswith(include_filetypes)]
 
     for name in names:
@@ -48,8 +48,8 @@ def detection(known_encoded, face_encode, known_names):
     if result[best_match_index] and dif_val < 0.7:
         name = known_names[best_match_index]
     
-    print(f"Name      : {name}")
-    print(f"Confidence: {1 - dif_val}")
+    # print(f"Name      : {name}")
+    # print(f"Confidence: {1 - dif_val}")
     return name
 
 def features(frame):
@@ -73,8 +73,8 @@ def average_pixel_color(frame):
 def remove_dupe(head):
     return list(set(head))
 
-def write(all_names, img):
-    r = open("attendance.txt", "r+")
+def write(all_names, img, file_no):
+    r = open(f"../periods/period_{file_no}/attendance.txt", "r+")
     
     lines = r.readlines()
     already_in = []
@@ -91,8 +91,8 @@ def write(all_names, img):
             r.write(f"{name}:{current_time}\n")
             already_in.append(name)
             already_in = remove_dupe(already_in)
-            cv2.imwrite(f"snapshots/{name}:{current_time}.jpg", img)
-            print(f"Recorded {name} at {current_time}")
+            cv2.imwrite(f"../periods/period_{file_no}/snapshots/{name}:{current_time}.jpg", img)
+            # print(f"Recorded {name} at {current_time}")
 
 def avg_names(all_names, scan_time=5):
     everyname = [val for sublist in all_names for val in sublist]
@@ -103,8 +103,8 @@ def avg_names(all_names, scan_time=5):
             main_names.append(name)    
     return main_names
 
-def write_not_here(known_names):
-    r = open("attendance.txt", "r+")
+def write_not_here(known_names, file_no):
+    r = open(f"../periods/period_{file_no}/attendance.txt", "r+")
     lines = r.readlines()
     already_in = []
     for line in lines:
@@ -121,18 +121,16 @@ def write_not_here(known_names):
 
 def start(cap, file_no, delay):
     print(f"Starting for Period {file_no}")
-
-    os.chdir(f"../periods/period{file_no}")
-    cleanup()
+    cleanup(file_no)
     print("Cleanup finished")
 
-    known_encoded, known_names = load_encodings()
+    known_encoded, known_names = load_encodings(file_no)
     print("Encodings loaded")
     
     if len(known_names) == 0:
         print("Skipping period as no photos are in file")
         cap.release()
-        return
+        return None
 
     rigidness_motion = 3.2
     scan_time = 20
@@ -160,28 +158,24 @@ def start(cap, file_no, delay):
                 all_names.append(proccess_data(known_encoded, known_names, frame))
 
             names = avg_names(all_names, scan_time)
-            write(names, frame)
+            write(names, frame, file_no)
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
         last_frame_gray = frame_gray
         
         if time.time() - start > delay:
-            write_not_here(known_names=known_names)
+            write_not_here(known_names=known_names, file_no=file_no)
             break
 
-    print(os.getcwd())
     os.chdir("../../eye")
-    print(os.getcwd())
     print(f"Done with Period {file_no}")
 
 def REPL():
-    interperter = repl_sys.Reader(">> ")
-    #TODO Deal with this
+    repl.main()
 
 def main():
     s = sched.scheduler(time.time, time.sleep)
-    #TODO Deal with this \/
-    # Thread = threading.Thread(target=REPL, daemon=True)
+    repl_thread = threading.Thread(target=REPL, daemon=True)
 
     cap = cv2.VideoCapture(0)
 
@@ -197,6 +191,8 @@ def main():
         s.enter(7980, 1, start, argument=(cap, "4", 4495,))
         s.enter(4500, 1, start, argument=(cap, "3", 3600,))
     
+    print("starting")
+    repl_thread.start()
     s.run()
 
 if __name__ == "__main__":

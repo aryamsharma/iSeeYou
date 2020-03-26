@@ -1,0 +1,8 @@
+
+List is a command to list any file such as
+    >> list period 1
+    ... (Prints out period 1 attendance.txt)
+
+    >> list period 2
+    ... (Prints out period 2 attendance.txt)
+

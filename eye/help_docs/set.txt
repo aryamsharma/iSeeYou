@@ -1,0 +1,9 @@
+
+Set is a command to set your prompt
+    >> set prompt <<
+    ... (sets prompt to <<)
+
+    << set prompt ***
+    ... (sets prompt to ***)
+    *** 
+

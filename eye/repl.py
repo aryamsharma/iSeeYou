@@ -1,54 +1,35 @@
+from time import sleep
+import difflib
 import os
 
 class Reader:
     # Name template
     # Aryam_S:Wed Mar 25 04:06:13 2020
 
-    def help_list():
-        print("")
-
     def help():
-        print("""
-        The template for each command is as follows
-        <definer> <sub-class> <option>
+        with open("help_docs/help.txt") as f:
+            for i in f:
+                print("\33[32m", i.rstrip(), "\33[0m")
 
-        Definer call:
-        \tThe definer parameter defines what action is to be done. For example
+    def help_list():
+        with open("help_docs/list.txt") as f:
+            for i in f:
+                print("\33[32m", i.rstrip(), "\33[0m")
 
-        \tlist ... (Will list whatever is is in the following options) {list period 1}
-        \tset ...  (Will set the sub-class object as the option)       {set prompt <><>}
+    def help_commands():
+        print("\n\33[32m" + "Possible commands are:")
 
-        Sub-Class:
-        \tThe sub-class parameter explains what command is to be run. For example
-
-        \tlist period ... (List period table)
-        \tset prompt ...  (Set prompt)
-
-        Option:
-        \tThe option parameter allows arguments to be passed to the sub-class option. For example
-
-        \t>> set prompt <><><> 
-        \t... (Changes prompt)
-
-        \t<><><> set prompt <._.>
-        \t... (Changes prompt)
-
-        \t<._.> list period 1
-        \t... (Prints out table)
-        """)
-
-    def commands():
-        print("Possible commands are:")
-        current_commands = ["list period <val>", "set prompt <val>", ""]
-        for i in current_commands:
-            print(i)
-
+        with open("help_docs/commands.txt") as f:
+            for i in f:
+                print(i.rstrip())
+        print("\33[0m", end="")
+    
     def attendance_data(period_no: int):
         if period_no > 4:
             print("No such period no")
-            return 
+            return None
         
-        with open(f"../periods/period{period_no}/attendance.txt") as f:
+        with open(f"../periods/period_{period_no}/attendance.txt") as f:
             highest = -1
             for line in f:
                 info = line.strip().split(":", 1)
@@ -58,7 +39,7 @@ class Reader:
             
             if highest == -1:
                 print("No attendace data")
-                return
+                return None
 
             highest += 1
 
@@ -85,10 +66,30 @@ class Reader:
 
             f.close()
 
-def accuracy(word):
-    pass
+def accuracy(command):
+    highest = -1
+    guessed = []
+    for possible_command in ["help", "list", "set"]:
+        seq = difflib.SequenceMatcher(None, command, possible_command)
+        val = seq.ratio() * 100
+        if val >= 25:
+            guessed.append([possible_command, val])    
+    
+    if len(guessed):
+        # Largest value will be the first element
+        guessed = sorted(guessed, key=lambda x: x[-1], reverse=True)
+        print("\33[32m", "\nThe most similar command(s)")
 
-if __name__ == "__main__":
+        for pack in guessed:
+            print(pack[0])
+    
+    else:
+        print("\33[32m", "No command found", end=" ")
+    print("\33[0m")
+    return None
+
+def main():
+    sleep(5)
     PS = ">> "
 
     while True:
@@ -98,7 +99,11 @@ if __name__ == "__main__":
             option = command.split(" ", 1)[-1]
 
             if option.split(" ")[0] == "period":
-                Reader.attendance_data(int(option.split(" ")[1]))
+                try:
+                    Reader.attendance_data(int(option.split(" ")[1]))
+                
+                except ValueError:
+                    print("\33[32m", "Invalid number, try again", "\33[0m")
 
         elif command.startswith("set"):
             option = command.split(" ", 2)
@@ -106,16 +111,26 @@ if __name__ == "__main__":
                 PS = option[-1] if option[-1].endswith(" ") else option[-1] + " "
         
         elif command.startswith("help"):
-            option = command.split(" ")
+            option = command.strip().split(" ")
+
             if option[-1] == "help":
                 Reader.help()
             
+            elif option[-1] == "commands":
+                Reader.help_commands()
+            
             elif option[-1] == "list":
-                pass
+                Reader.help_list()
 
             elif option[-1] == "set":
                 pass
 
-        
         elif command == "clear":
+            print("\33[0m")
             os.system("clear")
+        
+        elif command == "exit":
+            exit()
+        
+        else:
+            accuracy(command)
