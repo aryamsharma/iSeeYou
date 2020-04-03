@@ -2,79 +2,97 @@ from time import sleep
 import difflib
 import os
 
+
 class Reader:
     # Name template
     # Aryam_S:Wed Mar 25 04:06:13 2020
+    # Edge case (extra space)
+    # Aryam_S:Fri Apr  3 17:58:04 2020
 
     def help():
-        with open("help_docs/help.txt") as f:
+        path = "help_docs/help.txt"
+        file_path = path if __name__ == "__main__" else "../../eye/" + path
+
+        with open(file_path) as f:
             for i in f:
                 print("\33[32m", i.rstrip(), "\33[0m")
 
     def help_list():
-        with open("help_docs/list.txt") as f:
+        path = "help_docs/list.txt"
+        file_path = path if __name__ == "__main__" else "../../eye/" + path
+
+        with open(file_path) as f:
             for i in f:
                 print("\33[32m", i.rstrip(), "\33[0m")
 
     def help_commands():
-        print("\n\33[32m" + "Possible commands are:")
+        path = "help_docs/commands.txt"
+        file_path = path if __name__ == "__main__" else "../../eye/" + path
 
-        with open("help_docs/commands.txt") as f:
+        print("\n\33[32m" + "Possible commands are:")
+        with open(file_path) as f:
             for i in f:
                 print(i.rstrip())
         print("\33[0m", end="")
-    
+
     def attendance_data(period_no: int):
         if period_no > 4:
             print("No such period no")
             return None
-        
-        with open(f"../periods/period_{period_no}/attendance.txt") as f:
-            highest = -1
+
+        abs_path = f"../periods/period_{period_no}/attendance.txt"
+        rel_path = f"../period_{period_no}/attendance.txt"
+        file_path = abs_path if __name__ == "__main__" else rel_path
+
+        with open(file_path) as f:
+            # lnl = longest name length
+            lnl = -1
             for line in f:
                 info = line.strip().split(":", 1)
                 name = info[0]
-                if len(name) > highest:
-                    highest = len(name)
-            
-            if highest == -1:
+                if len(name) > lnl:
+                    lnl = len(name)
+
+            if lnl == -1:
                 print("No attendace data")
                 return None
 
-            highest += 1
+            lnl += 1
 
-            print("+" + ("-" * highest)  + "-------------------" + "+")
-            print("|" +  "Name".center(highest + 4)  + "|" + "Info".center(14) + "|")
-            print("+" + ("-" * highest)  + "-------------------" + "+")
+            print("+" + ("-" * lnl) + "-------------------" + "+")
+            print("|" + "Name".center(lnl + 4) + "|" + "Info".center(14) + "|")
+            print("+" + ("-" * lnl) + "-------------------" + "+")
 
             f.seek(0)
             a = True
-            
+
             for line in f:
                 sep = "━" if a else "-"
                 info = line.strip().split(":", 1)
                 name = info[0]
-                info = info[1].split(" ")
+                info = [i for i in info[1].split(" ") if i not in [" ", ""]]
                 day, time = info[0], info[3]
-                
-                print("|" + (name + " ").ljust(highest + 2, sep), end="> | ")
-                print(time, day + " ", end="|\n")
-                
-                a = not a
-            
-            print("+" + "-" * highest  + "-------------------" + "+")
 
+                print("|" + (name + " ").ljust(lnl + 2, sep), end="> | ")
+                print(time, day + " ", end="|\n")
+                a = not a
+
+            print("+" + "-" * lnl + "-------------------" + "+")
             f.close()
 
+
 def accuracy(command):
+    if command in [" ", ""]:
+        return None
+
     highest = -1
     guessed = []
     for possible_command in ["help", "list", "set"]:
         seq = difflib.SequenceMatcher(None, command, possible_command)
         val = seq.ratio() * 100
         if val >= 25:
-            guessed.append([possible_command, val])    
-    
+            guessed.append([possible_command, val])
+
     if len(guessed):
         # Largest value will be the first element
         guessed = sorted(guessed, key=lambda x: x[-1], reverse=True)
@@ -82,14 +100,16 @@ def accuracy(command):
 
         for pack in guessed:
             print(pack[0])
-    
+
     else:
         print("\33[32m", "No command found", end=" ")
+
     print("\33[0m")
     return None
 
-def main():
-    sleep(3)
+
+def main(sleep_time=3):
+    sleep(sleep_time)
     PS = ">> "
 
     while True:
@@ -101,24 +121,25 @@ def main():
             if option.split(" ")[0] == "period":
                 try:
                     Reader.attendance_data(int(option.split(" ")[1]))
-                
+
                 except ValueError:
                     print("\33[32m", "Invalid number, try again", "\33[0m")
 
         elif command.startswith("set"):
             option = command.split(" ", 2)
             if option[-2] == "prompt":
-                PS = option[-1] if option[-1].endswith(" ") else option[-1] + " "
-        
+                PS = option[-1]
+                PS = PS if PS.endswith(" ") else PS + " "
+
         elif command.startswith("help"):
             option = command.strip().split(" ")
 
             if option[-1] == "help":
                 Reader.help()
-            
+
             elif option[-1] == "commands":
                 Reader.help_commands()
-            
+
             elif option[-1] == "list":
                 Reader.help_list()
 
@@ -128,9 +149,13 @@ def main():
         elif command == "clear":
             print("\33[0m")
             os.system("clear")
-        
+
         elif command == "exit":
             exit()
-        
+
         else:
             accuracy(command)
+
+
+if __name__ == "__main__":
+    main(time_sleep=0)

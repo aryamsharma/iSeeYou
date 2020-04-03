@@ -2,22 +2,28 @@ from PIL import Image
 import face_recognition
 import os
 
+
 def setter(name):
     while True:
         im = Image.open(name)
-        
         try:
             img = face_recognition.load_image_file(name)
-            loc = face_recognition.face_locations(img, number_of_times_to_upsample=0, model="hog")[0]
+            loc = face_recognition.face_locations(
+                img,
+                number_of_times_to_upsample=0,
+                model="hog")[0]
             break
-        except:
+        except IndexError:
+            # If no face is detected then the list will be empty
             im.rotate(90).save(name)
     return img, loc
+
 
 def getcropped(img, loc):
     top, right, bottom, left = loc
     cropped = img[top:bottom, left:right]
     return Image.fromarray(cropped)
+
 
 def main(Class_no):
     """
@@ -39,3 +45,7 @@ def main(Class_no):
         os.remove(name)
 
     os.chdir("../eye")
+
+
+if __name__ == "__main__":
+    main(input("Which class is this student in?\n"))
