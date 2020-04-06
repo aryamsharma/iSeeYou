@@ -2,12 +2,24 @@ import os
 import sched
 import threading
 import time
+import logging
 
 import cv2
 import face_recognition
 import numpy as np
 
 import repl
+
+
+def setup_logger(name, log_file, formatter):
+    handler = logging.FileHandler(log_file)
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(handler)
+
+    return logger
 
 
 def cleanup():
@@ -69,6 +81,7 @@ def detection(known_encoded, face_encode, known_names):
     if result[best_match_index] and dif_val < 0.7:
         name = known_names[best_match_index]
 
+    recorder.debug(f"{name} with {1 - dif_val} confidence")
     # print(f"Name      : {name}")
     # print(f"Confidence: {1 - dif_val}")
     return name
@@ -104,7 +117,11 @@ def write(all_names, img):
             already_in = remove_dupe(already_in)
             cv2.imwrite(f"snapshots/{name}:{current_time}.jpg", img)
 
-            print(f"Recorded {name} at {current_time}")
+            recorder.info(
+                f"Recorded and saved picture of {name} at {current_time}\n")
+
+            logger.info(
+                f"Recorded and saved picture of {name} at {current_time}")
 
 
 def remove_dupe(head):
@@ -115,6 +132,7 @@ def write_not_here(known_names):
     f = open("attendance.txt", "r+")
     lines = f.readlines()
     already_in = []
+    not_here = []
     for line in lines:
         if not line.startswith("\n#"):
             already_in.append(line.strip().split(":")[0])
@@ -126,6 +144,11 @@ def write_not_here(known_names):
 
     for name in list(set_known_names.symmetric_difference(already_in)):
         f.write(name + "\n")
+        not_here.append(name)
+
+    logger.debug(
+        f"Names that have been recorded {set_known_names}\n"
+        f"Names that have not been recorded {not_here}")
 
 
 def start(cap, file_no, delay):
@@ -137,13 +160,23 @@ def start(cap, file_no, delay):
     known_encoded, known_names = load_encodings()
     print("Encodings loaded")
 
+    rigidness_motion = 3.2
+    scan_time = 20
+
+    logger.debug(
+        f"Period no ------------> {file_no}\n"
+        f"Number of students ---> {len(known_names)}\n"
+        f"Tolerance level ------> {rigidness_motion}\n"
+        f"Motion capture time --> {scan_time}")
+
     if len(known_names) == 0:
         print("Skipping period as no photos are in file")
+        logger.warning(
+            "No student images in located folder\n"
+            f"Current folder being checked is {os.getcwd()}")
         cap.release()
         return None
 
-    rigidness_motion = 3.2
-    scan_time = 20
     start = time.time()
 
     print(f"Tolerance level ------------------------> {rigidness_motion}")
@@ -162,12 +195,13 @@ def start(cap, file_no, delay):
 
         if average_intensity > rigidness_motion:
             all_names = []
-
+            recorder.info(f"Movement detected\nTol = {average_intensity}\n")
             for i in range(scan_time):
                 ret, frame = cap.read()
                 all_names.append(
                     proccess_data(known_encoded, known_names, frame))
 
+            recorder.debug(f"Names detected were {all_names}")
             names = avg_names(all_names, scan_time)
             write(names, frame)
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -187,8 +221,30 @@ def REPL():
 
 
 def main():
+    global logger, recorder
     s = sched.scheduler(time.time, time.sleep)
     repl_thread = threading.Thread(target=REPL, daemon=True)
+
+    # Main
+    formatter = logging.Formatter(
+        "%(asctime)s.%(msecs).03d\n"
+        "%(levelname)s\t\t%(filename)s\t\t%(funcName)s\n"
+        "%(message)s\n", datefmt="%Y/%m/%d | %H:%M:%S")
+
+    logger = setup_logger(
+        "main_logger",
+        "log_files/i_see_you.log",
+        formatter)
+
+    # Recorder
+    formatter = logging.Formatter(
+        "%(asctime)s.%(msecs).03d\t%(levelname)s\n"
+        "%(message)s", datefmt="%Y/%m/%d | %H:%M:%S")
+
+    recorder = setup_logger(
+        "recorder_logger",
+        "log_files/recordings.log",
+        formatter)
 
     cap = cv2.VideoCapture(0)
 
@@ -212,6 +268,21 @@ def main():
 if __name__ == "__main__":
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
+
+    # Main
+    formatter = logging.Formatter(
+        "%(asctime)s.%(msecs).03d\n"
+        "%(levelname)s\t\t%(filename)s\t\t%(funcName)s\n"
+        "%(message)s\n", datefmt="%B %a %d | %Y / %m / %d | %H:%M:%S")
+
+    logger = setup_logger("main_logger", "log_files/i_see_you.log")
+
+    # Recorder
+    recorder_formatter = logging.Formatter(
+        "%(asctime)s.%(msecs).03d\t%(levelname)s\n"
+        "%(message)s", datefmt="%H:%M:%S")
+
+    recorder = setup_logger("recorder_logger", "log_files/recordings.log")
 
     if int(time.localtime()[2]) % 2 == 1:
         s.enter(0, 1, start, argument=(cap, "1", 5,))

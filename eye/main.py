@@ -1,5 +1,7 @@
+import logging
 import os
 import time
+
 import schedule
 
 import cropper
@@ -8,19 +10,54 @@ from text_animator import Animation
 
 
 def job():
-    if bool([i for i in os.listdir("../to_crop") if not i.startswith(".")]):
-        if input("There are images in the to_crop file, would you like to \
-add new students? (y/n): ")[0].lower() == "y":
-            cropper.main(int(input("Class_no: ")))
+    if bool([i for i in os.listdir("../to_crop") if i[0] != "."]):
+        logger.debug("Photos are in the to_crop folder")
+
+        if input("There are images in the to_crop file, would you like to "
+                 "add new students? (y/n): ").strip()[0].lower() == "y":
+
+            logger.debug("User wanted to crop photos")
+            class_no = int(input("Class_no: "))
+
+            if class_no in [i for i in range(1, 5)]:
+                cropper.main(class_no)
+
+            else:
+                print("Invalid number executing main folder")
+                logger.debug(
+                    "User entered invalid number, executing main folder")
+
+        else:
+            logger.debug("User did not want to crop photos")
 
     Animation.to_animate(text=Animation.standard_text)
     print("Running main Script")
+    logger.info("Running main Script")
     i_see_you.main()
 
 
 if __name__ == "__main__":
     os.system("clear")
     print(f"Time taken to import all libraries: {time.perf_counter()}")
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+
+    formatter = logging.Formatter(
+        "%(asctime)s.%(msecs).03d\n"
+        "%(levelname)s\t\t%(filename)s\t\t%(funcName)s\n"
+        "%(message)s\n", datefmt="%Y/%m/%d | %H:%M:%S")
+
+    file_handler = logging.FileHandler("log_files/main.log")
+    file_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+
+    logger.debug(
+        "|==============|\n"
+        "| N E W  D A Y |\n"
+        "|==============|")
+
     job()
     # schedule.every().day.at("08:15").do(job)
 
