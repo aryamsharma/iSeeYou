@@ -1,1 +1,12 @@
 
+2020/04/09 | 06:08:25.284
+DEBUG		i_see_you.py		start
+Period no ------------> 1
+Number of students ---> 1
+Tolerance level ------> 3.2
+Motion capture time --> 20
+
+2020/04/09 | 06:08:27.003
+INFO		i_see_you.py		write
+Recorded and saved picture of Aryam_S at Thu Apr  9 06:08:26 2020
+

@@ -22,6 +22,10 @@ def setup_logger(name, log_file, formatter):
     return logger
 
 
+def min_to_sec(minute):
+    return minute * 60
+
+
 def cleanup():
     open("attendance.txt", "w").close()
 
@@ -116,6 +120,8 @@ def write(all_names, img):
             already_in.append(name)
             already_in = remove_dupe(already_in)
             cv2.imwrite(f"snapshots/{name}:{current_time}.jpg", img)
+
+            print(f"Recorded and saved picture of {name} at {current_time}")
 
             recorder.info(
                 f"Recorded and saved picture of {name} at {current_time}\n")
@@ -255,7 +261,7 @@ def main():
         s.enter(4500, 1, start, argument=(cap, "4", 3600,))
 
     else:
-        s.enter(0, 1, start, argument=(cap, "1", 4920,))
+        s.enter(0, 1, start, argument=(cap, "2", 4920,))
         s.enter(4925, 1, start, argument=(cap, "1", 7975,))
         s.enter(7980, 1, start, argument=(cap, "4", 4495,))
         s.enter(4500, 1, start, argument=(cap, "3", 3600,))
@@ -268,32 +274,52 @@ def main():
 if __name__ == "__main__":
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
-
     # Main
     formatter = logging.Formatter(
         "%(asctime)s.%(msecs).03d\n"
         "%(levelname)s\t\t%(filename)s\t\t%(funcName)s\n"
-        "%(message)s\n", datefmt="%B %a %d | %Y / %m / %d | %H:%M:%S")
+        "%(message)s\n", datefmt="%Y/%m/%d | %H:%M:%S")
 
-    logger = setup_logger("main_logger", "log_files/i_see_you.log")
+    logger = setup_logger(
+        "main_logger",
+        "log_files/i_see_you.log",
+        formatter)
 
     # Recorder
-    recorder_formatter = logging.Formatter(
+    formatter = logging.Formatter(
         "%(asctime)s.%(msecs).03d\t%(levelname)s\n"
-        "%(message)s", datefmt="%H:%M:%S")
+        "%(message)s", datefmt="%Y/%m/%d | %H:%M:%S")
 
-    recorder = setup_logger("recorder_logger", "log_files/recordings.log")
+    recorder = setup_logger(
+        "recorder_logger",
+        "log_files/recordings.log",
+        formatter)
+
+    period_length = min_to_sec(1 * 60 + 15)
+
+    period_1_start = min_to_sec(0 * 60 + 00.0)
+    period_2_start = min_to_sec(1 * 60 + 22)
+    period_3_start = min_to_sec(3 * 60 + 35)
+    period_4_start = min_to_sec(4 * 60 - 5)
 
     if int(time.localtime()[2]) % 2 == 1:
-        s.enter(0, 1, start, argument=(cap, "1", 5,))
-        s.enter(10, 1, start, argument=(cap, "2", 7975,))
-        s.enter(7980, 1, start, argument=(cap, "3", 4495,))
-        s.enter(4500, 1, start, argument=(cap, "4", 3600,))
+        s.enter(
+            period_1_start, 1, start, argument=(cap, "1", period_length + 2,))
+        s.enter(
+            period_2_start, 1, start, argument=(cap, "2", period_length + 0,))
+        s.enter(
+            period_3_start, 1, start, argument=(cap, "3", period_length + 0,))
+        s.enter(
+            period_4_start, 1, start, argument=(cap, "4", period_length + 0,))
 
     else:
-        s.enter(0, 1, start, argument=(cap, "2", 4920,))
-        s.enter(4925, 1, start, argument=(cap, "1", 7975,))
-        s.enter(7980, 1, start, argument=(cap, "4", 4495,))
-        s.enter(4500, 1, start, argument=(cap, "3", 3600,))
+        s.enter(
+            period_1_start, 1, start, argument=(cap, "2", period_length + 2,))
+        s.enter(
+            period_2_start, 1, start, argument=(cap, "1", period_length + 0,))
+        s.enter(
+            period_3_start, 1, start, argument=(cap, "4", period_length + 0,))
+        s.enter(
+            period_4_start, 1, start, argument=(cap, "3", period_length + 0,))
 
     s.run()
