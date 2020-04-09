@@ -37,7 +37,7 @@ class Reader:
 
     def attendance_data(period_no: int):
         if period_no > 4:
-            print("No such period no")
+            print("\33[32m", "No such period no", "\33[0m")
             return None
 
         abs_path = f"../periods/period_{period_no}/attendance.txt"
@@ -111,18 +111,21 @@ def accuracy(command):
 def main(sleep_time=3):
     sleep(sleep_time)
     PS = ">> "
+    last_command = "help"
 
     while True:
         command = input(PS).lower().lstrip()
 
+        if command == "p":
+            command = last_command
+
         if command.startswith("list"):
             option = command.split(" ", 1)[-1]
-
             if option.split(" ")[0] == "period":
                 try:
                     Reader.attendance_data(int(option.split(" ")[1]))
 
-                except ValueError:
+                except (ValueError, IndexError, FileNotFoundError):
                     print("\33[32m", "Invalid number, try again", "\33[0m")
 
         elif command.startswith("set"):
@@ -156,6 +159,8 @@ def main(sleep_time=3):
         else:
             accuracy(command)
 
+        last_command = command
+
 
 if __name__ == "__main__":
-    main(time_sleep=0)
+    main(sleep_time=0)

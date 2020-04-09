@@ -31,3 +31,5 @@ Try typing out "help <definer>" to understand what that definer does.
 
 If you do not know know any definers type in "help commands"
 
+To repeat the last command enter "p"
+

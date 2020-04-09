@@ -254,17 +254,32 @@ def main():
 
     cap = cv2.VideoCapture(0)
 
+    period_length = min_to_sec(1 * 60 + 15)
+
+    period_1_start = min_to_sec(0 * 60 + 00.0)
+    period_2_start = min_to_sec(1 * 60 + 22)
+    period_3_start = min_to_sec(3 * 60 + 35)
+    period_4_start = min_to_sec(4 * 60 - 5)
+
     if int(time.localtime()[2]) % 2 == 1:
-        s.enter(0, 1, start, argument=(cap, "1", 4920,))
-        s.enter(4925, 1, start, argument=(cap, "2", 7975,))
-        s.enter(7980, 1, start, argument=(cap, "3", 4495,))
-        s.enter(4500, 1, start, argument=(cap, "4", 3600,))
+        s.enter(
+            period_1_start, 1, start, argument=(cap, "1", period_length + 2,))
+        s.enter(
+            period_2_start, 1, start, argument=(cap, "2", period_length + 0,))
+        s.enter(
+            period_3_start, 1, start, argument=(cap, "3", period_length + 0,))
+        s.enter(
+            period_4_start, 1, start, argument=(cap, "4", period_length + 0,))
 
     else:
-        s.enter(0, 1, start, argument=(cap, "2", 4920,))
-        s.enter(4925, 1, start, argument=(cap, "1", 7975,))
-        s.enter(7980, 1, start, argument=(cap, "4", 4495,))
-        s.enter(4500, 1, start, argument=(cap, "3", 3600,))
+        s.enter(
+            period_1_start, 1, start, argument=(cap, "2", period_length + 2,))
+        s.enter(
+            period_2_start, 1, start, argument=(cap, "1", period_length + 0,))
+        s.enter(
+            period_3_start, 1, start, argument=(cap, "4", period_length + 0,))
+        s.enter(
+            period_4_start, 1, start, argument=(cap, "3", period_length + 0,))
 
     print("starting")
     repl_thread.start()

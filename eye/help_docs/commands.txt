@@ -2,4 +2,4 @@
 list period <val>
 set prompt <val>
 clear
-
+p (last command)
