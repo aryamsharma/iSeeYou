@@ -1,8 +1,8 @@
+import logging
 import os
 import sched
 import threading
 import time
-import logging
 
 import cv2
 import face_recognition
@@ -11,12 +11,17 @@ import numpy as np
 import repl
 
 
-def setup_logger(name, log_file, formatter):
+def setup_logger(name, log_file, formatter, log):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(formatter)
 
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
+
+    if log:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.CRITICAL)
+
     logger.addHandler(handler)
 
     return logger
@@ -158,12 +163,17 @@ def write_not_here(known_names):
 
 
 def start(cap, file_no, delay):
+    logger.debug(
+        "Current folder before changing directory\n"
+        f"{os.getcwd()}")
+
     os.chdir(f"../periods/period_{file_no}")
     print(f"Starting for Period {file_no}")
     cleanup()
     print("Cleanup finished")
 
     known_encoded, known_names = load_encodings()
+    # known = {k: v for (k, v) in zip(known_names, known_encoded)}
     print("Encodings loaded")
 
     rigidness_motion = 3.2
@@ -226,7 +236,7 @@ def REPL():
     repl.main()
 
 
-def main():
+def main(log):
     global logger, recorder
     s = sched.scheduler(time.time, time.sleep)
     repl_thread = threading.Thread(target=REPL, daemon=True)
@@ -238,9 +248,7 @@ def main():
         "%(message)s\n", datefmt="%Y/%m/%d | %H:%M:%S")
 
     logger = setup_logger(
-        "main_logger",
-        "log_files/i_see_you.log",
-        formatter)
+        "main_logger", "log_files/i_see_you.log", formatter, log)
 
     # Recorder
     formatter = logging.Formatter(
@@ -248,38 +256,28 @@ def main():
         "%(message)s", datefmt="%Y/%m/%d | %H:%M:%S")
 
     recorder = setup_logger(
-        "recorder_logger",
-        "log_files/recordings.log",
-        formatter)
+        "recorder_logger", "log_files/recordings.log", formatter, log)
 
     cap = cv2.VideoCapture(0)
 
+    # Period lengths (Delay)
     period_length = min_to_sec(1 * 60 + 15)
 
-    period_1_start = min_to_sec(0 * 60 + 00.0)
-    period_2_start = min_to_sec(1 * 60 + 22)
-    period_3_start = min_to_sec(3 * 60 + 35)
-    period_4_start = min_to_sec(4 * 60 - 5)
+    # Period 1 to period 4 start times from period 1 start time
+    period_start_times = [
+        min_to_sec(0 * 60 + 00),
+        min_to_sec(1 * 60 + 22),
+        min_to_sec(3 * 60 + 35),
+        min_to_sec(4 * 60 - 5)]
 
     if int(time.localtime()[2]) % 2 == 1:
-        s.enter(
-            period_1_start, 1, start, argument=(cap, "1", period_length + 2,))
-        s.enter(
-            period_2_start, 1, start, argument=(cap, "2", period_length + 0,))
-        s.enter(
-            period_3_start, 1, start, argument=(cap, "3", period_length + 0,))
-        s.enter(
-            period_4_start, 1, start, argument=(cap, "4", period_length + 0,))
-
+        for period_stats in zip(period_start_times, ["1", "2", "3", "4"]):
+            s.enter(period_stats[0], 1, start,
+                    argument=(cap, period_stats[1], period_length - 5,))
     else:
-        s.enter(
-            period_1_start, 1, start, argument=(cap, "2", period_length + 2,))
-        s.enter(
-            period_2_start, 1, start, argument=(cap, "1", period_length + 0,))
-        s.enter(
-            period_3_start, 1, start, argument=(cap, "4", period_length + 0,))
-        s.enter(
-            period_4_start, 1, start, argument=(cap, "3", period_length + 0,))
+        for period_stats in zip(period_start_times, ["2", "1", "4", "3"]):
+            s.enter(period_stats[0], 1, start,
+                    argument=(cap, period_stats[1], period_length - 5,))
 
     print("starting")
     repl_thread.start()
@@ -287,6 +285,7 @@ def main():
 
 
 if __name__ == "__main__":
+    log = True
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
     # Main
@@ -296,9 +295,7 @@ if __name__ == "__main__":
         "%(message)s\n", datefmt="%Y/%m/%d | %H:%M:%S")
 
     logger = setup_logger(
-        "main_logger",
-        "log_files/i_see_you.log",
-        formatter)
+        "main_logger", "log_files/i_see_you.log", formatter, log)
 
     # Recorder
     formatter = logging.Formatter(
@@ -306,35 +303,25 @@ if __name__ == "__main__":
         "%(message)s", datefmt="%Y/%m/%d | %H:%M:%S")
 
     recorder = setup_logger(
-        "recorder_logger",
-        "log_files/recordings.log",
-        formatter)
+        "recorder_logger", "log_files/recordings.log", formatter, log)
 
+    # Period lengths (Delay)
     period_length = min_to_sec(1 * 60 + 15)
 
-    period_1_start = min_to_sec(0 * 60 + 00.0)
-    period_2_start = min_to_sec(1 * 60 + 22)
-    period_3_start = min_to_sec(3 * 60 + 35)
-    period_4_start = min_to_sec(4 * 60 - 5)
+    # Period 1 to Period 4 start times from period 1 start time
+    period_start_times = [
+        min_to_sec(0 * 60 + 00),
+        min_to_sec(1 * 60 + 22),
+        min_to_sec(3 * 60 + 35),
+        min_to_sec(4 * 60 - 5)]
 
     if int(time.localtime()[2]) % 2 == 1:
-        s.enter(
-            period_1_start, 1, start, argument=(cap, "1", period_length + 2,))
-        s.enter(
-            period_2_start, 1, start, argument=(cap, "2", period_length + 0,))
-        s.enter(
-            period_3_start, 1, start, argument=(cap, "3", period_length + 0,))
-        s.enter(
-            period_4_start, 1, start, argument=(cap, "4", period_length + 0,))
-
+        for period_stats in zip(period_start_times, ["1", "2", "3", "4"]):
+            s.enter(period_stats[0], 1, start,
+                    argument=(cap, period_stats[1], period_length - 5,))
     else:
-        s.enter(
-            period_1_start, 1, start, argument=(cap, "2", period_length + 2,))
-        s.enter(
-            period_2_start, 1, start, argument=(cap, "1", period_length + 0,))
-        s.enter(
-            period_3_start, 1, start, argument=(cap, "4", period_length + 0,))
-        s.enter(
-            period_4_start, 1, start, argument=(cap, "3", period_length + 0,))
+        for period_stats in zip(period_start_times, ["2", "1", "4", "3"]):
+            s.enter(period_stats[0], 1, start,
+                    argument=(cap, period_stats[1], period_length - 5,))
 
     s.run()

@@ -1,3 +1,4 @@
+import argparse
 import logging
 import os
 import time
@@ -9,7 +10,7 @@ import i_see_you
 from text_animator import Animation
 
 
-def job():
+def job(log):
     if bool([i for i in os.listdir("../to_crop") if i[0] != "."]):
         logger.debug("Photos are in the to_crop folder")
 
@@ -33,15 +34,39 @@ def job():
     Animation.to_animate(text=Animation.standard_text)
     print("Running main Script")
     logger.info("Running main Script")
-    i_see_you.main()
+    i_see_you.main(log)
+
+
+def flags():
+    parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group()
+
+    group.add_argument(
+        "-nl", "--no_logging",
+        help="When this flag is selected NO LOGGING will occur",
+        action="store_true")
+
+    # group.add_argument(
+    #     "-l", "--logging",
+    #     help="When this flag is selected LOGGING will occur",
+    #     action="store_true")
+
+    args = parser.parse_args()
+    return not args.no_logging
 
 
 if __name__ == "__main__":
     os.system("clear")
     print(f"Time taken to import all libraries: {time.perf_counter()}")
+    log = flags()
 
     logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
+
+    if log:
+        logger.setLevel(logging.DEBUG)
+
+    else:
+        logger.setLevel(logging.CRITICAL)
 
     formatter = logging.Formatter(
         "%(asctime)s.%(msecs).03d\n"
@@ -58,7 +83,7 @@ if __name__ == "__main__":
         "| N E W  D A Y |\n"
         "|==============|")
 
-    job()
+    job(log)
     # schedule.every().day.at("08:15").do(job)
 
     # while True:
