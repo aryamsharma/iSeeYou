@@ -1,4 +1,4 @@
-# Project Title
+# iSeeYou
 
 This is an attendance automation system using ***opencv*** and the ***facial recognition*** modules. Using a database of students faces it will be able to __correctly identify faces 90% of the time.__
 
