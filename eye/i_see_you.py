@@ -41,15 +41,17 @@ def cleanup():
 
 def load_encodings(valid_filetypes=(".jpg", ".png")):
     encoded = []
-    names = os.listdir()
-    names = [name for name in names if name.lower().endswith(valid_filetypes)]
+    names = []
 
-    for name in names:
+    for name in os.listdir():
+        if not name.lower().endswith(valid_filetypes):
+            continue
+
+        names.append(name.split(".")[0])
         image = face_recognition.load_image_file(name)
         loc = face_recognition.face_locations(image, 0)
         encoded.append(face_recognition.face_encodings(image, loc, 1)[0])
 
-    names = [name.split(".")[0] for name in names]
     return encoded, names
 
 
@@ -285,7 +287,8 @@ def main(log):
 
 
 if __name__ == "__main__":
-    log = True
+    log = False
+    print(f"Logging state: {log}")
     s = sched.scheduler(time.time, time.sleep)
     cap = cv2.VideoCapture(0)
     # Main

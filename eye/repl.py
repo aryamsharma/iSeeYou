@@ -10,25 +10,16 @@ class Reader:
     # Aryam_S:Fri Apr  3 17:58:04 2020
 
     def help():
-        path = "help_docs/help.txt"
-        file_path = path if __name__ == "__main__" else "../../eye/" + path
-
         with open(file_path) as f:
             for i in f:
                 print("\33[32m", i.rstrip(), "\33[0m")
 
     def help_list():
-        path = "help_docs/list.txt"
-        file_path = path if __name__ == "__main__" else "../../eye/" + path
-
         with open(file_path) as f:
             for i in f:
                 print("\33[32m", i.rstrip(), "\33[0m")
 
     def help_commands():
-        path = "help_docs/commands.txt"
-        file_path = path if __name__ == "__main__" else "../../eye/" + path
-
         print("\n\33[32m" + "Possible commands are:")
         with open(file_path) as f:
             for i in f:
@@ -79,6 +70,18 @@ class Reader:
 
             print("+" + "-" * lnl + "-------------------" + "+")
             f.close()
+    
+    def clean(period_no: int):
+        abs_path = f"../periods/period_{period_no}"
+        rel_path = f"../period_{period_no}"
+        file_path = abs_path if __name__ == "__main__" else rel_path
+
+        _ = open(f"{file_path}/attendance.txt", "w+").close()
+
+        for file_obj in os.listdir(f"{file_path}/snapshots"):
+            if not file_obj.startswith("."):
+                os.remove(f"{file_path}/snapshots/{file_obj}")
+
 
 
 def accuracy(command):
@@ -109,6 +112,9 @@ def accuracy(command):
 
 
 def main(sleep_time=3):
+    path = "help_docs/help.txt"
+    file_path = path if __name__ == "__main__" else "../../eye/" + path
+
     sleep(sleep_time)
     PS = ">> "
     last_command = "help"
@@ -148,6 +154,17 @@ def main(sleep_time=3):
 
             elif option[-1] == "set":
                 pass
+        
+        elif command.startswith("clear"):
+            option = command.split(" ", 1)[-1]
+            if option.split(" ")[0] == "period":
+                try:
+                    Reader.clean(int(option.split(" ")[1]))
+
+                except (ValueError, IndexError, FileNotFoundError) as e:
+                    print(f"Error occurred: {e}")
+                    print("\33[32m", "Invalid number, try again", "\33[0m")
+
 
         elif command == "clear":
             print("\33[0m")
