@@ -1,0 +1,56 @@
+2020/09/23 | 16:31:06.780
+DEBUG		i_see_you.py		start
+Current folder before changing directory
+/Users/aryamsharma/Desktop/Coding/Python/MyThings/iSeeYou/eye
+
+2020/09/23 | 16:31:07.409
+DEBUG		i_see_you.py		start
+Period no ------------> 1
+Number of students ---> 2
+Tolerance level ------> 3.2
+Motion capture time --> 20
+
+2020/09/23 | 16:31:14.084
+INFO		i_see_you.py		write
+Recorded and saved picture of Aryam_S at Wed Sep 23 16:31:14 2020
+
+2020/09/23 | 16:31:30.135
+INFO		i_see_you.py		write
+Recorded and saved picture of nick at Wed Sep 23 16:31:30 2020
+
+2021/08/20 | 14:55:46.586
+DEBUG		i_see_you.py		start
+Current folder before changing directory
+/Users/aryamsharma/Desktop/Coding/Python/MyThings/iSeeYou/eye
+
+2021/08/20 | 14:55:46.933
+DEBUG		i_see_you.py		start
+Period no ------------> 2
+Number of students ---> 2
+Tolerance level ------> 3.2
+Motion capture time --> 20
+
+2021/08/20 | 14:56:19.786
+DEBUG		i_see_you.py		start
+Current folder before changing directory
+/Users/aryamsharma/Desktop/Coding/Python/MyThings/iSeeYou/eye
+
+2021/08/20 | 14:56:20.032
+DEBUG		i_see_you.py		start
+Period no ------------> 2
+Number of students ---> 2
+Tolerance level ------> 3.2
+Motion capture time --> 20
+
+2021/09/04 | 18:29:30.819
+DEBUG		i_see_you.py		start
+Current folder before changing directory
+/Users/aryamsharma/Desktop/Coding/Python/MyThings/iSeeYou/eye
+
+2021/09/04 | 18:29:31.137
+DEBUG		i_see_you.py		start
+Period no ------------> 2
+Number of students ---> 2
+Tolerance level ------> 3.2
+Motion capture time --> 20
+

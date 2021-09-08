@@ -81,6 +81,7 @@ def features(frame):
 
 
 def detection(known_encoded, face_encode, known_names):
+    print(known_encoded, face_encode)
     result = face_recognition.compare_faces(known_encoded, face_encode)
     name = "Unknown"
 
@@ -196,7 +197,7 @@ def start(cap, file_no, delay):
         return None
 
     start = time.time()
-
+    # Why in christ's name is this being so badly shown to the user, Christ.
     print(f"Tolerance level ------------------------> {rigidness_motion}")
     print(f"Frames taken when motion is detected ---> {scan_time}")
 
@@ -287,6 +288,7 @@ def main(log):
 
 
 if __name__ == "__main__":
+    # If you're trying to understand this code. Don't. Even I don't.
     log = False
     print(f"Logging state: {log}")
     s = sched.scheduler(time.time, time.sleep)

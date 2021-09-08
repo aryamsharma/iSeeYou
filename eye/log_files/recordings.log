@@ -1,0 +1,530 @@
+2020/09/23 | 16:31:11.487	INFO
+Movement detected
+Tol = 3.634548611111111
+
+2020/09/23 | 16:31:11.614	DEBUG
+Unknown with 0.352679678898851 confidence
+2020/09/23 | 16:31:11.717	DEBUG
+nick with 0.4059426087977712 confidence
+2020/09/23 | 16:31:11.820	DEBUG
+Aryam_S with 0.44808496425090705 confidence
+2020/09/23 | 16:31:11.917	DEBUG
+Aryam_S with 0.44480931599174467 confidence
+2020/09/23 | 16:31:12.039	DEBUG
+Aryam_S with 0.481427785572651 confidence
+2020/09/23 | 16:31:12.182	DEBUG
+Aryam_S with 0.45772726927416685 confidence
+2020/09/23 | 16:31:12.317	DEBUG
+Aryam_S with 0.46110294802343765 confidence
+2020/09/23 | 16:31:12.492	DEBUG
+Aryam_S with 0.4700724906459832 confidence
+2020/09/23 | 16:31:12.670	DEBUG
+Aryam_S with 0.43961761395394183 confidence
+2020/09/23 | 16:31:12.841	DEBUG
+Aryam_S with 0.4504274131776277 confidence
+2020/09/23 | 16:31:12.965	DEBUG
+Aryam_S with 0.4579324202160744 confidence
+2020/09/23 | 16:31:13.087	DEBUG
+Aryam_S with 0.4525720210341908 confidence
+2020/09/23 | 16:31:13.211	DEBUG
+Aryam_S with 0.4408527030458743 confidence
+2020/09/23 | 16:31:13.342	DEBUG
+nick with 0.40384218639854286 confidence
+2020/09/23 | 16:31:13.439	DEBUG
+Aryam_S with 0.4076271541527704 confidence
+2020/09/23 | 16:31:13.543	DEBUG
+Aryam_S with 0.4352119440908153 confidence
+2020/09/23 | 16:31:13.653	DEBUG
+Aryam_S with 0.4432261309753919 confidence
+2020/09/23 | 16:31:13.805	DEBUG
+Aryam_S with 0.4416697097381348 confidence
+2020/09/23 | 16:31:13.934	DEBUG
+Aryam_S with 0.4338793018639102 confidence
+2020/09/23 | 16:31:14.059	DEBUG
+Aryam_S with 0.4452674546005593 confidence
+2020/09/23 | 16:31:14.059	DEBUG
+Names detected were [['Unknown'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S']]
+2020/09/23 | 16:31:14.084	INFO
+Recorded and saved picture of Aryam_S at Wed Sep 23 16:31:14 2020
+
+2020/09/23 | 16:31:20.896	INFO
+Movement detected
+Tol = 3.6232454427083334
+
+2020/09/23 | 16:31:21.025	DEBUG
+Unknown with 0.35232138231120547 confidence
+2020/09/23 | 16:31:21.179	DEBUG
+Aryam_S with 0.4094865477911088 confidence
+2020/09/23 | 16:31:21.306	DEBUG
+nick with 0.4172393634696222 confidence
+2020/09/23 | 16:31:21.454	DEBUG
+nick with 0.41496469839068795 confidence
+2020/09/23 | 16:31:21.580	DEBUG
+Aryam_S with 0.4336868990012436 confidence
+2020/09/23 | 16:31:21.668	DEBUG
+Aryam_S with 0.4559197373530758 confidence
+2020/09/23 | 16:31:21.785	DEBUG
+Aryam_S with 0.44815070192623596 confidence
+2020/09/23 | 16:31:21.911	DEBUG
+Aryam_S with 0.43135029804173153 confidence
+2020/09/23 | 16:31:22.017	DEBUG
+Aryam_S with 0.4382586359961661 confidence
+2020/09/23 | 16:31:22.125	DEBUG
+Aryam_S with 0.41418480866181184 confidence
+2020/09/23 | 16:31:22.276	DEBUG
+Aryam_S with 0.4376612067715605 confidence
+2020/09/23 | 16:31:22.434	DEBUG
+Aryam_S with 0.43545367468157414 confidence
+2020/09/23 | 16:31:22.602	DEBUG
+nick with 0.4171367747312654 confidence
+2020/09/23 | 16:31:22.720	DEBUG
+Aryam_S with 0.423509721970311 confidence
+2020/09/23 | 16:31:22.852	DEBUG
+Aryam_S with 0.4565367079495877 confidence
+2020/09/23 | 16:31:22.990	DEBUG
+Aryam_S with 0.456657785622824 confidence
+2020/09/23 | 16:31:23.086	DEBUG
+Aryam_S with 0.4459456582189887 confidence
+2020/09/23 | 16:31:23.175	DEBUG
+Aryam_S with 0.44761546672259755 confidence
+2020/09/23 | 16:31:23.289	DEBUG
+Aryam_S with 0.4455440607113258 confidence
+2020/09/23 | 16:31:23.404	DEBUG
+Aryam_S with 0.4152163440413519 confidence
+2020/09/23 | 16:31:23.404	DEBUG
+Names detected were [['Unknown'], ['Aryam_S'], ['nick'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S']]
+2020/09/23 | 16:31:23.848	INFO
+Movement detected
+Tol = 3.312954644097222
+
+2020/09/23 | 16:31:23.984	DEBUG
+Aryam_S with 0.4117754033973201 confidence
+2020/09/23 | 16:31:24.308	DEBUG
+Aryam_S with 0.435027975460751 confidence
+2020/09/23 | 16:31:24.434	DEBUG
+Aryam_S with 0.45124834662536917 confidence
+2020/09/23 | 16:31:25.377	DEBUG
+Names detected were [['Aryam_S'], [], [], [], ['Aryam_S'], ['Aryam_S'], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2020/09/23 | 16:31:25.400	INFO
+Movement detected
+Tol = 5.808893229166666
+
+2020/09/23 | 16:31:26.583	DEBUG
+Aryam_S with 0.45648091021316994 confidence
+2020/09/23 | 16:31:26.781	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], ['Aryam_S'], [], [], []]
+2020/09/23 | 16:31:26.809	INFO
+Movement detected
+Tol = 6.722744140625
+
+2020/09/23 | 16:31:27.742	DEBUG
+nick with 0.4321291818968771 confidence
+2020/09/23 | 16:31:28.201	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], ['nick'], [], [], [], [], [], [], []]
+2020/09/23 | 16:31:28.227	INFO
+Movement detected
+Tol = 7.079946831597222
+
+2020/09/23 | 16:31:28.389	DEBUG
+nick with 0.429984060502445 confidence
+2020/09/23 | 16:31:28.531	DEBUG
+Aryam_S with 0.4244737246209298 confidence
+2020/09/23 | 16:31:28.737	DEBUG
+Aryam_S with 0.4314961527161295 confidence
+2020/09/23 | 16:31:28.825	DEBUG
+nick with 0.4727254258841551 confidence
+2020/09/23 | 16:31:28.916	DEBUG
+nick with 0.4192735988087096 confidence
+2020/09/23 | 16:31:29.031	DEBUG
+nick with 0.4468083167458836 confidence
+2020/09/23 | 16:31:29.137	DEBUG
+nick with 0.41326897019663533 confidence
+2020/09/23 | 16:31:29.307	DEBUG
+nick with 0.4474645935669177 confidence
+2020/09/23 | 16:31:29.397	DEBUG
+nick with 0.43742231198747794 confidence
+2020/09/23 | 16:31:29.523	DEBUG
+nick with 0.438801209532909 confidence
+2020/09/23 | 16:31:29.616	DEBUG
+nick with 0.4023164021008103 confidence
+2020/09/23 | 16:31:29.726	DEBUG
+Unknown with 0.39839118960426156 confidence
+2020/09/23 | 16:31:29.847	DEBUG
+nick with 0.42171732504671233 confidence
+2020/09/23 | 16:31:29.964	DEBUG
+nick with 0.4235497699426102 confidence
+2020/09/23 | 16:31:30.093	DEBUG
+Aryam_S with 0.42442774883522405 confidence
+2020/09/23 | 16:31:30.094	DEBUG
+Names detected were [[], ['nick'], [], ['Aryam_S'], [], [], ['Aryam_S'], ['nick'], ['nick'], ['nick'], ['nick'], [], ['nick'], ['nick'], ['nick'], ['nick'], ['Unknown'], ['nick'], ['nick'], ['Aryam_S']]
+2020/09/23 | 16:31:30.134	INFO
+Recorded and saved picture of nick at Wed Sep 23 16:31:30 2020
+
+2020/09/23 | 16:31:30.162	INFO
+Movement detected
+Tol = 3.5219715711805555
+
+2020/09/23 | 16:31:30.307	DEBUG
+Aryam_S with 0.449561046517875 confidence
+2020/09/23 | 16:31:30.444	DEBUG
+Aryam_S with 0.4393981810391864 confidence
+2020/09/23 | 16:31:30.557	DEBUG
+Aryam_S with 0.4014231404533779 confidence
+2020/09/23 | 16:31:30.640	DEBUG
+nick with 0.4308915166336803 confidence
+2020/09/23 | 16:31:30.780	DEBUG
+Aryam_S with 0.413574441037188 confidence
+2020/09/23 | 16:31:30.906	DEBUG
+Aryam_S with 0.4237591894922349 confidence
+2020/09/23 | 16:31:31.042	DEBUG
+nick with 0.416426818375513 confidence
+2020/09/23 | 16:31:31.148	DEBUG
+Aryam_S with 0.4510882407816684 confidence
+2020/09/23 | 16:31:31.278	DEBUG
+Aryam_S with 0.4176638600762732 confidence
+2020/09/23 | 16:31:31.379	DEBUG
+Aryam_S with 0.4006970115165427 confidence
+2020/09/23 | 16:31:31.478	DEBUG
+Aryam_S with 0.4464241514647228 confidence
+2020/09/23 | 16:31:31.581	DEBUG
+Aryam_S with 0.43313499798337596 confidence
+2020/09/23 | 16:31:31.723	DEBUG
+Aryam_S with 0.4347773571358834 confidence
+2020/09/23 | 16:31:31.843	DEBUG
+Aryam_S with 0.45827852401593805 confidence
+2020/09/23 | 16:31:31.966	DEBUG
+nick with 0.4376383074967396 confidence
+2020/09/23 | 16:31:32.084	DEBUG
+nick with 0.41700137997434317 confidence
+2020/09/23 | 16:31:32.214	DEBUG
+nick with 0.4076692912900113 confidence
+2020/09/23 | 16:31:32.379	DEBUG
+Aryam_S with 0.4476519878595844 confidence
+2020/09/23 | 16:31:32.501	DEBUG
+Aryam_S with 0.4202815179484979 confidence
+2020/09/23 | 16:31:32.632	DEBUG
+Aryam_S with 0.41814592663310923 confidence
+2020/09/23 | 16:31:32.632	DEBUG
+Names detected were [['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['nick'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S']]
+2020/09/23 | 16:31:32.638	INFO
+Movement detected
+Tol = 11.880404730902777
+
+2020/09/23 | 16:31:32.788	DEBUG
+Unknown with 0.39242178190559185 confidence
+2020/09/23 | 16:31:32.911	DEBUG
+nick with 0.4035247316780356 confidence
+2020/09/23 | 16:31:33.035	DEBUG
+nick with 0.40253094848052706 confidence
+2020/09/23 | 16:31:33.144	DEBUG
+Aryam_S with 0.407874752601603 confidence
+2020/09/23 | 16:31:33.286	DEBUG
+Aryam_S with 0.4080071707674623 confidence
+2020/09/23 | 16:31:33.412	DEBUG
+nick with 0.4083973288508408 confidence
+2020/09/23 | 16:31:33.528	DEBUG
+nick with 0.43287250885281303 confidence
+2020/09/23 | 16:31:33.655	DEBUG
+Aryam_S with 0.4159078284633474 confidence
+2020/09/23 | 16:31:33.764	DEBUG
+Unknown with 0.3914234462090982 confidence
+2020/09/23 | 16:31:33.882	DEBUG
+nick with 0.4226030036389251 confidence
+2020/09/23 | 16:31:34.015	DEBUG
+Aryam_S with 0.4183979265388369 confidence
+2020/09/23 | 16:31:34.147	DEBUG
+nick with 0.4006692548580203 confidence
+2020/09/23 | 16:31:34.246	DEBUG
+Aryam_S with 0.4053598494134739 confidence
+2020/09/23 | 16:31:34.346	DEBUG
+Unknown with 0.37794024466833753 confidence
+2020/09/23 | 16:31:34.463	DEBUG
+Aryam_S with 0.40866813226112897 confidence
+2020/09/23 | 16:31:34.618	DEBUG
+Aryam_S with 0.4143448284520488 confidence
+2020/09/23 | 16:31:34.723	DEBUG
+Unknown with 0.39963760011941296 confidence
+2020/09/23 | 16:31:34.842	DEBUG
+Unknown with 0.3954093837802064 confidence
+2020/09/23 | 16:31:34.972	DEBUG
+Unknown with 0.3892929590177797 confidence
+2020/09/23 | 16:31:35.088	DEBUG
+Aryam_S with 0.40718357416861173 confidence
+2020/09/23 | 16:31:35.089	DEBUG
+Names detected were [['Unknown'], ['nick'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['nick'], ['Aryam_S'], ['Unknown'], ['nick'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['Unknown'], ['Aryam_S'], ['Aryam_S'], ['Unknown'], ['Unknown'], ['Unknown'], ['Aryam_S']]
+2020/09/23 | 16:31:35.119	INFO
+Movement detected
+Tol = 3.3309212239583332
+
+2020/09/23 | 16:31:35.236	DEBUG
+nick with 0.4346753057663765 confidence
+2020/09/23 | 16:31:35.346	DEBUG
+Aryam_S with 0.4141658475693304 confidence
+2020/09/23 | 16:31:35.457	DEBUG
+nick with 0.46071475608422163 confidence
+2020/09/23 | 16:31:35.604	DEBUG
+Aryam_S with 0.42950897819887823 confidence
+2020/09/23 | 16:31:35.737	DEBUG
+nick with 0.44048615152312776 confidence
+2020/09/23 | 16:31:35.866	DEBUG
+Aryam_S with 0.40117853782300883 confidence
+2020/09/23 | 16:31:36.006	DEBUG
+nick with 0.4777210866145216 confidence
+2020/09/23 | 16:31:36.160	DEBUG
+Unknown with 0.38136511817395324 confidence
+2020/09/23 | 16:31:36.312	DEBUG
+nick with 0.42493686645132034 confidence
+2020/09/23 | 16:31:36.433	DEBUG
+nick with 0.420260605580701 confidence
+2020/09/23 | 16:31:36.567	DEBUG
+nick with 0.42241489908008656 confidence
+2020/09/23 | 16:31:36.690	DEBUG
+Unknown with 0.3667871483207169 confidence
+2020/09/23 | 16:31:36.831	DEBUG
+Unknown with 0.3931599208684873 confidence
+2020/09/23 | 16:31:36.955	DEBUG
+Unknown with 0.39345034956272906 confidence
+2020/09/23 | 16:31:37.088	DEBUG
+nick with 0.4233521560246799 confidence
+2020/09/23 | 16:31:37.206	DEBUG
+Aryam_S with 0.4045855576945918 confidence
+2020/09/23 | 16:31:37.355	DEBUG
+Unknown with 0.3771023898333099 confidence
+2020/09/23 | 16:31:37.473	DEBUG
+Unknown with 0.39112142028802643 confidence
+2020/09/23 | 16:31:37.605	DEBUG
+Aryam_S with 0.41331354750177884 confidence
+2020/09/23 | 16:31:37.714	DEBUG
+nick with 0.41469820840199245 confidence
+2020/09/23 | 16:31:37.715	DEBUG
+Names detected were [['nick'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['nick'], ['Unknown'], ['nick'], ['nick'], ['nick'], ['Unknown'], ['Unknown'], ['Unknown'], ['nick'], ['Aryam_S'], ['Unknown'], ['Unknown'], ['Aryam_S'], ['nick']]
+2020/09/23 | 16:31:37.726	INFO
+Movement detected
+Tol = 3.245636935763889
+
+2020/09/23 | 16:31:37.902	DEBUG
+Aryam_S with 0.420521904859833 confidence
+2020/09/23 | 16:31:38.032	DEBUG
+Aryam_S with 0.4207612651813092 confidence
+2020/09/23 | 16:31:38.143	DEBUG
+nick with 0.40171713001548914 confidence
+2020/09/23 | 16:31:38.262	DEBUG
+Aryam_S with 0.41580100639781437 confidence
+2020/09/23 | 16:31:38.381	DEBUG
+Aryam_S with 0.4012335332960979 confidence
+2020/09/23 | 16:31:38.481	DEBUG
+Aryam_S with 0.4088304397855169 confidence
+2020/09/23 | 16:31:38.606	DEBUG
+nick with 0.43805095309208164 confidence
+2020/09/23 | 16:31:38.713	DEBUG
+nick with 0.4339661179754184 confidence
+2020/09/23 | 16:31:38.810	DEBUG
+Aryam_S with 0.4085466039536647 confidence
+2020/09/23 | 16:31:38.916	DEBUG
+Aryam_S with 0.4364095105759832 confidence
+2020/09/23 | 16:31:39.023	DEBUG
+Aryam_S with 0.4406536396154348 confidence
+2020/09/23 | 16:31:39.133	DEBUG
+Unknown with 0.3948902378680861 confidence
+2020/09/23 | 16:31:39.237	DEBUG
+Aryam_S with 0.4203944945940198 confidence
+2020/09/23 | 16:31:39.348	DEBUG
+Aryam_S with 0.44546281401137444 confidence
+2020/09/23 | 16:31:39.452	DEBUG
+nick with 0.42362360665153964 confidence
+2020/09/23 | 16:31:39.572	DEBUG
+nick with 0.44177256470953674 confidence
+2020/09/23 | 16:31:39.680	DEBUG
+Aryam_S with 0.4577568369970544 confidence
+2020/09/23 | 16:31:39.793	DEBUG
+Aryam_S with 0.4781843228945737 confidence
+2020/09/23 | 16:31:39.916	DEBUG
+Aryam_S with 0.427047918015407 confidence
+2020/09/23 | 16:31:40.033	DEBUG
+Aryam_S with 0.46009795888560845 confidence
+2020/09/23 | 16:31:40.033	DEBUG
+Names detected were [['Aryam_S'], ['Aryam_S'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Unknown'], ['Aryam_S'], ['Aryam_S'], ['nick'], ['nick'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S']]
+2020/09/23 | 16:31:40.039	INFO
+Movement detected
+Tol = 8.807320963541667
+
+2020/09/23 | 16:31:40.173	DEBUG
+Aryam_S with 0.4492339785140037 confidence
+2020/09/23 | 16:31:40.327	DEBUG
+Aryam_S with 0.43050244691909867 confidence
+2020/09/23 | 16:31:40.444	DEBUG
+Aryam_S with 0.44816990142646407 confidence
+2020/09/23 | 16:31:40.585	DEBUG
+Aryam_S with 0.41511520270947155 confidence
+2020/09/23 | 16:31:40.711	DEBUG
+Aryam_S with 0.42977376853297433 confidence
+2020/09/23 | 16:31:40.811	DEBUG
+Aryam_S with 0.4134517065985587 confidence
+2020/09/23 | 16:31:40.901	DEBUG
+Unknown with 0.386563261120765 confidence
+2020/09/23 | 16:31:41.007	DEBUG
+Aryam_S with 0.4140720991275938 confidence
+2020/09/23 | 16:31:41.135	DEBUG
+Aryam_S with 0.42858950610864976 confidence
+2020/09/23 | 16:31:41.235	DEBUG
+Aryam_S with 0.44715947566020986 confidence
+2020/09/23 | 16:31:41.326	DEBUG
+Aryam_S with 0.40019954801988367 confidence
+2020/09/23 | 16:31:41.413	DEBUG
+Aryam_S with 0.4448628973310814 confidence
+2020/09/23 | 16:31:41.531	DEBUG
+Unknown with 0.3958126627443521 confidence
+2020/09/23 | 16:31:41.631	DEBUG
+Unknown with 0.3925359794251986 confidence
+2020/09/23 | 16:31:41.728	DEBUG
+nick with 0.4478028054978578 confidence
+2020/09/23 | 16:31:41.826	DEBUG
+Unknown with 0.3957565371498857 confidence
+2020/09/23 | 16:31:41.926	DEBUG
+Aryam_S with 0.4273054804262132 confidence
+2020/09/23 | 16:31:42.010	DEBUG
+Aryam_S with 0.4087545460000921 confidence
+2020/09/23 | 16:31:42.113	DEBUG
+Unknown with 0.3933759673895124 confidence
+2020/09/23 | 16:31:42.215	DEBUG
+Unknown with 0.37206943469072407 confidence
+2020/09/23 | 16:31:42.215	DEBUG
+Names detected were [['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Unknown'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Unknown'], ['Unknown'], ['nick'], ['Unknown'], ['Aryam_S'], ['Aryam_S'], ['Unknown'], ['Unknown']]
+2020/09/23 | 16:31:42.237	INFO
+Movement detected
+Tol = 4.016003689236111
+
+2020/09/23 | 16:31:42.352	DEBUG
+Unknown with 0.38918048099357205 confidence
+2020/09/23 | 16:31:42.449	DEBUG
+Unknown with 0.39434617859575927 confidence
+2020/09/23 | 16:31:42.544	DEBUG
+Aryam_S with 0.4265405491977997 confidence
+2020/09/23 | 16:31:42.624	DEBUG
+Aryam_S with 0.43229948311133115 confidence
+2020/09/23 | 16:31:42.723	DEBUG
+Aryam_S with 0.46131736859662786 confidence
+2020/09/23 | 16:31:42.822	DEBUG
+Aryam_S with 0.4254930884935788 confidence
+2020/09/23 | 16:31:43.754	DEBUG
+Names detected were [['Unknown'], ['Unknown'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2020/09/23 | 16:31:43.995	INFO
+Movement detected
+Tol = 7.090581597222222
+
+2020/09/23 | 16:31:45.504	DEBUG
+Aryam_S with 0.42502734175485757 confidence
+2020/09/23 | 16:31:45.755	DEBUG
+Aryam_S with 0.4192017609261489 confidence
+2020/09/23 | 16:31:46.108	DEBUG
+Aryam_S with 0.4027313815234683 confidence
+2020/09/23 | 16:31:46.254	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], ['Aryam_S'], ['Aryam_S'], ['Aryam_S'], []]
+2020/09/23 | 16:31:46.267	INFO
+Movement detected
+Tol = 7.137885199652778
+
+2020/09/23 | 16:31:46.783	DEBUG
+nick with 0.4407162932004376 confidence
+2020/09/23 | 16:31:46.862	DEBUG
+nick with 0.46028280266265265 confidence
+2020/09/23 | 16:31:46.960	DEBUG
+Unknown with 0.3508813648126622 confidence
+2020/09/23 | 16:31:47.072	DEBUG
+nick with 0.4353124389994947 confidence
+2020/09/23 | 16:31:47.168	DEBUG
+Unknown with 0.3877641172156838 confidence
+2020/09/23 | 16:31:47.269	DEBUG
+Unknown with 0.39058390752744376 confidence
+2020/09/23 | 16:31:47.369	DEBUG
+Unknown with 0.3756537325401872 confidence
+2020/09/23 | 16:31:47.450	DEBUG
+nick with 0.4509955770913844 confidence
+2020/09/23 | 16:31:47.546	DEBUG
+Aryam_S with 0.41309282609621034 confidence
+2020/09/23 | 16:31:48.099	DEBUG
+Names detected were [[], [], [], ['nick'], ['nick'], ['Unknown'], ['nick'], ['Unknown'], ['Unknown'], ['Unknown'], ['nick'], ['Aryam_S'], [], [], [], [], [], [], [], []]
+2020/09/23 | 16:31:49.092	INFO
+Movement detected
+Tol = 3.414087456597222
+
+2020/09/23 | 16:31:49.269	DEBUG
+Unknown with 0.3848849241165466 confidence
+2020/09/23 | 16:31:49.368	DEBUG
+Unknown with 0.3903715379095172 confidence
+2020/09/23 | 16:31:49.438	DEBUG
+Unknown with 0.3784254450658069 confidence
+2021/08/20 | 14:56:20.117	INFO
+Movement detected
+Tol = 7.111761067708334
+
+2021/08/20 | 14:56:20.220	DEBUG
+Aryam_S with 0.5388540436672187 confidence
+2021/08/20 | 14:56:20.311	DEBUG
+Aryam_S with 0.4829754409198159 confidence
+2021/08/20 | 14:56:20.414	DEBUG
+Aryam_S with 0.49515420377024966 confidence
+2021/08/20 | 14:56:20.891	DEBUG
+Aryam_S with 0.4823946126378549 confidence
+2021/08/20 | 14:56:21.032	DEBUG
+Aryam_S with 0.5087159988994047 confidence
+2021/08/20 | 14:56:21.126	DEBUG
+Jassdeep with 0.4938682965698794 confidence
+2021/08/20 | 14:56:21.197	DEBUG
+Unknown with 0.3947751028580275 confidence
+2021/08/20 | 14:56:21.470	DEBUG
+Aryam_S with 0.5059071326189521 confidence
+2021/08/20 | 14:56:21.541	DEBUG
+Names detected were [['Aryam_S'], ['Aryam_S'], ['Aryam_S'], [], [], [], [], [], [], ['Aryam_S'], [], ['Aryam_S'], ['Jassdeep'], ['Unknown'], [], [], [], ['Aryam_S'], [], []]
+2021/08/20 | 14:56:21.715	INFO
+Movement detected
+Tol = 3.298466796875
+
+2021/08/20 | 14:56:23.068	DEBUG
+Aryam_S with 0.4712929621708053 confidence
+2021/08/20 | 14:56:23.138	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], ['Aryam_S'], []]
+2021/08/20 | 14:56:23.168	INFO
+Movement detected
+Tol = 5.734156901041667
+
+2021/08/20 | 14:56:24.803	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2021/08/20 | 14:56:24.823	INFO
+Movement detected
+Tol = 5.085416666666666
+
+2021/09/04 | 18:29:38.411	INFO
+Movement detected
+Tol = 4.918049045138889
+
+2021/09/04 | 18:29:39.777	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2021/09/04 | 18:29:40.787	INFO
+Movement detected
+Tol = 3.757063802083333
+
+2021/09/04 | 18:29:42.164	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2021/09/04 | 18:29:42.198	INFO
+Movement detected
+Tol = 3.2445616319444444
+
+2021/09/04 | 18:29:43.496	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2021/09/04 | 18:29:43.634	INFO
+Movement detected
+Tol = 3.7165961371527776
+
+2021/09/04 | 18:29:45.023	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2021/09/04 | 18:29:46.460	INFO
+Movement detected
+Tol = 3.5510655381944445
+
+2021/09/04 | 18:29:47.849	DEBUG
+Names detected were [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+2021/09/04 | 18:29:47.880	INFO
+Movement detected
+Tol = 3.324723307291667
+
